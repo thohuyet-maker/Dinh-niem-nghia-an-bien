@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Di Tích Lịch Sử Đình Niệm Nghĩa</title>
+
+    <!-- Tải Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tải Font chữ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome cho Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-red': '#900000', 
+                        'primary-gold': '#d4af37', 
+                        'light-gray': '#f5f5f5', 
+                        'text-dark': '#333333',
+                    },
+                    fontFamily: {
+                        serif: ['Merriweather', 'serif'], 
+                        sans: ['Open Sans', 'sans-serif'], 
+                        playfair: ['"Playfair Display"', 'serif'], 
+                        vibes: ['"Great Vibes"', 'cursive'], 
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Merriweather', serif; 
+            color: #333;
+            background-color: #fff;
+            line-height: 1.8;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Họa tiết phân cách cổ điển */
+        .ornate-divider-vintage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5rem 0 2rem 0;
+            width: 100%;
+        }
+
+        .ornate-divider-vintage::before,
+        .ornate-divider-vintage::after {
+            content: '';
+            flex-grow: 1;
+            height: 2px;
+            background-color: #d4af37;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .ornate-divider-vintage-icon {
+            margin: 0 10px;
+            color: #d4af37;
+            font-size: 1.5rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            content: '❖'; 
+            display: inline-block;
+            position: relative;
+        }
+
+        .ornate-divider-vintage-icon::before,
+        .ornate-divider-vintage-icon::after {
+            content: '〜'; 
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: #d4af37;
+        }
+
+        .ornate-divider-vintage-icon::before { left: -20px; }
+        .ornate-divider-vintage-icon::after { right: -20px; }
+
+        /* Banner Style */
+        .hero-banner {
+            position: relative;
+            background-image: url('anh-bia.jpg'); 
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+        }
+        
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            /* Lớp phủ sáng hơn: từ 60% đen giảm dần về 15% đen */
+            background: linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.15) 100%);
+        }
+
+        /* Hiệu ứng kim loại mạ vàng 3D */
+        .text-gold-luxurious {
+            background: linear-gradient(to bottom, #fffef0 0%, #e8c678 25%, #d4af37 50%, #aa771c 75%, #fffae6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(3px 4px 5px rgba(0, 0, 0, 0.7));
+        }
+
+        .info-badge {
+            background-color: #5c1616;
+            color: #fff;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: #fff; transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+        .tab-content { display: none; animation: fadeIn 0.5s; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* AI Widget CSS */
+        .ai-widget-container { position: fixed; bottom: 24px; right: 24px; z-index: 50; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+        .ai-button { background-color: #fff; border: 2px solid #900000; color: #900000; border-radius: 50%; width: 56px; height: 56px; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.3s ease; }
+        .ai-button:hover { transform: scale(1.1); background-color: #f0f0f0; }
+        .ai-chat-window { width: 350px; height: 450px; background-color: #fff; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: none; flex-direction: column; overflow: hidden; transform-origin: bottom right; }
+        .ai-chat-header { background-color: #900000; color: #fff; padding: 12px 16px; font-weight: bold; display: flex; justify-content: space-between; }
+        .ai-chat-messages { flex-grow: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem; background-color: #fafafa; }
+        .ai-message { max-width: 85%; padding: 10px 14px; border-radius: 8px; line-height: 1.5; font-family: 'Open Sans', sans-serif;}
+        .ai-message.user { align-self: flex-end; background-color: #e3f2fd; border: 1px solid #bbdefb; border-bottom-right-radius: 0; }
+        .ai-message.bot { align-self: flex-start; background-color: #ffffff; border: 1px solid #e0e0e0; border-bottom-left-radius: 0;}
+        .ai-chat-input-area { display: flex; padding: 12px; border-top: 1px solid #eee; gap: 8px; background: #fff;}
+        .ai-chat-input-area input { flex-grow: 1; padding: 8px 12px; border: 1px solid #ccc; border-radius: 20px; outline: none; font-family: 'Open Sans', sans-serif;}
+        .ai-chat-input-area button { background-color: #900000; color: #fff; border: none; border-radius: 20px; padding: 0 16px; cursor: pointer; }
+        
+        @media (max-width: 768px) {
+            .hero-banner { height: 400px; }
+            .info-badge-container { flex-direction: column; gap: 16px; align-items: flex-start;}
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="bg-primary-red text-white sticky top-0 z-40 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-9">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="fa-solid fa-gopuram text-3xl"></i>
+                    <span class="font-serif font-bold text-xl tracking-wide uppercase">Đình Niệm Nghĩa</span>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6 font-medium text-sm uppercase font-sans">
+                        <a href="#noidung" class="nav-link active px-3 py-2" onclick="openTab(event, 'trang-chu')">Trang chủ</a>
+                        <!-- Nút khám phá cũng đưa về Trang chủ và cuộn xuống PDF -->
+                        <a href="#kham-pha-section" class="nav-link px-2 py-1" onclick="openTab(event, 'trang-chu'); setTimeout(() => document.getElementById('kham-pha-section').scrollIntoView({behavior: 'smooth'}), 100);">Khám phá</a>
+                        <a href="#noidung" class="nav-link px-2 py-1" onclick="openTab(event, 'video-anh')">Ảnh/Video</a>
+                    </div>
+                </div>
+
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md hover:bg-red-800 focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="hidden md:hidden bg-primary-red border-t border-red-800" id="mobile-menu">
+            <div class="px-3 pt-3 pb-3 space-y-1 sm:px-3 text-sm font-medium uppercase font-sans">
+                <a href="#noidung" class="block px-5 py-4 rounded-md hover:bg-red-800" onclick="openTab(event, 'trang-chu'); document.getElementById('mobile-menu').classList.add('hidden')">Trang chủ</a>
+                <a href="#kham-pha-section" class="block px-3 py-2 rounded-md hover:bg-red-800" onclick="openTab(event, 'trang-chu'); setTimeout(() => document.getElementById('kham-pha-section').scrollIntoView({behavior: 'smooth'}), 100); document.getElementById('mobile-menu').classList.add('hidden')">Khám phá</a>
+                <a href="#noidung" class="block px-3 py-2 rounded-md hover:bg-red-800" onclick="openTab(event, 'video-anh'); document.getElementById('mobile-menu').classList.add('hidden')">Ảnh/Video</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-banner flex items-center">
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row items-center justify-between">
+            <div class="text-left max-w-2xl">
+                <!-- Chữ nghệ thuật -->
+                <div class="text-4xl md:text-5xl font-vibes text-white mb-2 drop-shadow-md">Di tích</div>
+                
+                <!-- Chữ mạ vàng, viết hoa, không xuống dòng -->
+                <h1 class="text-[2.5rem] sm:text-5xl md:text-6xl lg:text-6xl font-bold font-playfair italic text-gold-luxurious uppercase leading-tight mb-2 tracking-wider whitespace-nowrap">
+                    ĐÌNH NIỆM NGHĨA
+                </h1>
+                
+                <!-- Đường họa tiết cổ điển -->
+                <div class="ornate-divider-vintage max-w-md justify-start ml-2 mb-4">
+                    <span class="ornate-divider-vintage-icon">✢</span>
+                </div>
+
+                <div class="flex items-center gap-2 mb-6 opacity-90 justify-start">
+                    <p class="text-white text-sm md:text-base font-serif italic tracking-wide">
+                        <i class="fa-solid fa-map-pin mr-2 text-primary-gold"></i>Phường An Biên, Thành phố Hải Phòng
+                    </p>
+                </div>
+                <p class="text-gray-200 text-base md:text-lg mb-8 leading-relaxed max-w-xl hidden md:block">
+                    Di sản lịch sử - văn hóa cấp Quốc gia, nơi lưu giữ hồn cốt kiến trúc nghệ thuật cổ truyền, nơi thờ phụng Đức Thánh Phạm Tử Nghi.
+                </p>
+                <a href="#kham-pha-section" onclick="openTab(event, 'trang-chu'); setTimeout(() => document.getElementById('kham-pha-section').scrollIntoView({behavior: 'smooth'}), 100);" class="inline-flex items-center gap-2 border-2 border-red-900 bg-[#8b0000]/80 text-white hover:bg-[#8b0000] px-8 py-3 rounded-full font-bold uppercase transition-all duration-300 text-sm font-sans shadow-lg shadow-black/40 backdrop-blur-sm">
+                    <i class="fa-regular fa-compass text-primary-gold text-lg"></i> Khám Phá Ngay
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-orange-50 border-b border-orange-100 shadow-sm relative z-20 -mt-2">
+        <div class="max-w-7xl mx-auto px-4 sm:px-7 lg:px-9 py-7">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 info-badge-container font-sans">
+                <div class="flex items-center">
+                    <div class="info-badge"><i class="fa-solid fa-user-shield"></i></div>
+                    <div>
+                        <h4 class="font-bold text-primary-red uppercase text-sm">DANH TƯỚNG</h4>
+                        <p class="text-xs text-gray-600">Thờ Phạm Tử Nghi</p>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div class="info-badge"><i class="fa-brands fa-pagelines"></i></div>
+                    <div>
+                        <h4 class="font-bold text-primary-red uppercase text-sm">KIẾN TRÚC CỔ KÍNH</h4>
+                        <p class="text-xs text-gray-600">Độc đáo, nguyên bản</p>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div class="info-badge"><i class="fa-solid fa-om"></i></div>
+                    <div>
+                        <h4 class="font-bold text-primary-red uppercase text-sm">LỄ HỘI</h4>
+                        <p class="text-xs text-gray-600">Nghi lễ truyền thống</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="py-12 bg-white" id="noidung">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+            
+            <!-- Tab 1: Trang chủ (Gồm Thông tin & Khung PDF) -->
+            <div id="trang-chu" class="tab-content active">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary-red mb-6 font-playfair">DI TÍCH LỊCH SỬ VĂN HOÁ GIỮA LÒNG HẢI PHÒNG</h2>
+                    <p class="text-lg md:text-xl leading-relaxed text-gray-800 max-w-8xl mx-auto">
+                        Ẩn mình giữa những tán cây cổ thụ xanh mát, Đình Niệm Nghĩa là nơi mang đậm dấu ấn lịch sử gắn với Danh tướng Phạm Tử Nghi. Không chỉ là một công trình kiến trúc cổ kính, nơi đây còn là không gian văn hóa, tâm linh đặc sắc.
+                    </p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-8 items-center mb-12">
+                    <div class="w-full md:w-1/2">
+                        <img src="danh-tuong.jpg" alt="Tướng quân Phạm Tử Nghi" class="w-full rounded-lg shadow-lg border-4 border-gray-100">
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-4 text-gray-800 text-justify leading-relaxed">
+                        <h3 class="text-3xl font-serif font-bold text-primary-red mb-4 border-b-2 border-red-100 pb-2">Đức Thánh Phạm Tử Nghi</h3>
+                        <p class="text-lg">Ông sinh thời Hồng Thuận triều Lê. Giữa thời loạn lạc, ông kiên quyết phò tá Mạc Chính Trung lập triều đình riêng. Chiến công lẫy lừng của ông là tiến đánh vùng Lưỡng Quảng.</p>
+                        <p class="text-lg">Nhớ ơn đức độ và sự hy sinh cao cả của ông, nhân dân suy tôn ông là Thành hoàng và lập đình thờ phụng hương khói muôn đời.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row-reverse gap-8 items-center mb-16">
+                    <div class="w-full md:w-1/2">
+                        <img src="kien-truc.jpg" alt="Kiến trúc Đình" class="w-full rounded-lg shadow-lg border-4 border-gray-100">
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-4 text-gray-800 text-justify leading-relaxed">
+                        <h3 class="text-3xl font-serif font-bold text-primary-red mb-4 border-b-2 border-red-100 pb-2">Kiến Trúc Đình Cổ Kính</h3>
+                        <p class="text-lg">Đình làm chủ yếu bằng gỗ lim, bố cục hình chữ Công (工), gồm 5 gian tiền đường, 2 gian nhà cầu (ống muống) và tòa hậu cung. Mái đao cong vút trang trí rồng chầu nguyệt, phượng múa, nghê chầu, thủy quái Makara.</p>
+                        <p class="text-lg">Hệ thống kết cấu gỗ bên trong chạm trổ tinh xảo, là một kiệt tác hiếm có còn sót lại, được công nhận Di tích cấp Quốc gia năm 1996.</p>
+                    </div>
+                </div>
+
+                <!-- KHU VỰC KHÁM PHÁ PDF -->
+                <div id="kham-pha-section" class="pt-12 border-t-2 border-dashed border-red-200">
+                    <div class="text-center mb-8">
+                        <h3 class="text-3xl font-playfair font-bold text-primary-red mb-3">Tài Liệu Khám Phá</h3>
+                        <p class="text-gray-600 font-sans mb-4">Đọc trực tiếp tài liệu lịch sử chi tiết về Đình Niệm Nghĩa.</p>
+                        
+                        <!-- BẢN VÁ LỖI: Nút mở PDF Toàn Màn Hình Dành riêng cho Điện Thoại -->
+                        <a href="file.pdf" target="_blank" class="md:hidden inline-flex items-center gap-2 bg-primary-red text-white px-8 py-4 rounded-full font-bold shadow-[0_4px_15px_rgba(144,0,0,0.4)] mb-4 hover:bg-red-800 transition-all text-sm uppercase">
+                            <i class="fa-solid fa-up-right-from-square text-lg"></i> Mở PDF Toàn Màn Hình
+                        </a>
+                        <p class="md:hidden text-xs text-gray-500 italic mb-6">Khuyến nghị dùng nút trên để xem dễ dàng nhất trên điện thoại.</p>
+                    </div>
+                    
+                    <!-- Khung nhúng PDF (Hoạt động tốt trên Máy tính) -->
+                    <div class="w-full h-[60vh] md:h-[85vh] min-h-[400px] md:min-h-[600px] border-4 border-gray-300 rounded-lg overflow-hidden shadow-2xl relative bg-gray-50 flex flex-col items-center justify-center">
+                        
+                        <!-- Thông báo dự phòng bên trong iframe nếu lỗi -->
+                        <div class="absolute inset-0 z-0 flex flex-col items-center justify-center p-6 text-center bg-gray-100">
+                            <i class="fa-regular fa-file-pdf text-6xl text-gray-400 mb-4"></i>
+                            <h4 class="text-xl font-bold text-gray-600 mb-2">Đang tải tài liệu PDF...</h4>
+                            <p class="text-gray-500 font-sans text-sm mb-6 max-w-md">Nếu tài liệu bị mất trang (thường gặp trên iPhone/Safari), vui lòng bấm nút bên dưới để mở bằng trình xem gốc của máy.</p>
+                            <a href="file.pdf" target="_blank" class="inline-block border-2 border-primary-red text-primary-red px-6 py-2 rounded-md font-bold hover:bg-primary-red hover:text-white transition-colors">
+                                <i class="fa-solid fa-book-open mr-2"></i>Xem tài liệu gốc
+                            </a>
+                        </div>
+
+                        <!-- Iframe chính -->
+                        <iframe src="file.pdf" class="w-full h-full absolute inset-0 z-10 bg-transparent" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Video/Ảnh -->
+            <div id="video-anh" class="tab-content">
+                <h3 class="text-3xl font-playfair font-bold text-center text-primary-red mb-8">Video Tư Liệu Thực Tế</h3>
+                
+                <!-- Khung Video căn giữa, tự động co giãn theo tỷ lệ 16:9 (Đã fix xem trực tiếp) -->
+                <div class="max-w-4xl mx-auto bg-gray-100 p-3 md:p-5 rounded-xl shadow-xl border border-gray-200">
+                    <div class="relative w-full overflow-hidden rounded-lg shadow-inner" style="padding-top: 56.25%;">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/-BnUwO7N6Bw" title="Đình Niệm Nghĩa - An Biên - Hải Phòng" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <p class="text-center text-gray-500 mt-4 italic text-sm">Bấm nút Play để xem trực tiếp tư liệu về Đình Niệm Nghĩa</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-text-dark text-gray-300 py-10 text-center font-sans">
+        <div class="max-w-4xl mx-auto px-4">
+            <i class="fa-solid fa-gopuram text-4xl text-primary-gold mb-4"></i>
+            <h4 class="font-serif font-bold text-xl text-white mb-2 uppercase">Di Tích Lịch Sử Đình Niệm Nghĩa</h4>
+            <p class="text-sm mb-4">Địa chỉ: Đường Nguyễn Sơn Hà, phường An Biên, thành phố Hải Phòng</p>
+            <div class="w-16 h-px bg-gray-600 mx-auto mb-4"></div>
+            <p class="text-xs text-gray-500 uppercase tracking-widest">Biên soạn nội dung: Chi đoàn giáo viên Trường THCS Lê Chân</p>
+        </div>
+    </footer>
+
+    <!-- Khung AI -->
+    <div class="ai-widget-container">
+        <div class="ai-chat-window" id="aiChatWindow">
+            <div class="ai-chat-header font-serif">
+                <span>Học Giả Thư Đồng</span>
+                <button onclick="toggleChat()" class="text-white hover:text-gray-200"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="ai-chat-messages" id="aiChatMessages">
+                <div class="ai-message bot">Kính chào! Tôi là thư đồng. Bạn muốn hỏi gì về Đình Niệm Nghĩa hay Đức Thánh Phạm Tử Nghi?</div>
+            </div>
+            <div class="ai-chat-input-area">
+                <input type="text" id="aiChatInput" placeholder="Hỏi thư đồng..." onkeypress="if(event.key === 'Enter') sendChatMessage()">
+                <button onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+
+        <div style="display:flex; gap: 12px;">
+            <button class="ai-button" onclick="playAudioStory()" title="Nghe nội dung mục đang xem (AI Voice)" id="btnAudioStory">
+                <i class="fa-solid fa-headphones"></i>
+            </button>
+            <button class="ai-button" onclick="toggleChat()" title="Trò chuyện cùng Thư Đồng">
+                <i class="fa-solid fa-comment-dots"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const apiKey = ""; 
+        let currentTabId = 'trang-chu';
+
+        function openTab(evt, tabId) {
+            if(evt) evt.preventDefault();
+            
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            const navLinks = document.querySelectorAll(".nav-link");
+            navLinks.forEach(link => link.classList.remove("active"));
+            
+            document.getElementById(tabId).classList.add("active");
+            
+            if(evt && evt.currentTarget.classList.contains('nav-link')) {
+                evt.currentTarget.classList.add("active");
+            } else {
+                 const targetLink = document.querySelector(`.nav-link[onclick*="${tabId}"]`);
+                 if(targetLink) targetLink.classList.add('active');
+            }
+
+            currentTabId = tabId;
+            if(isPlayingAudio) playAudioStory(); 
+            document.getElementById('noidung').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // AI Chatbot
+        let isChatOpen = false;
+        let chatHistory = [];
+        const systemPrompt = "Ngươi là thư đồng trông coi Đình Niệm Nghĩa tại Hải Phòng. Trả lời ngắn gọn 2-3 câu. Giải đáp về lịch sử đình và tướng Phạm Tử Nghi.";
+
+        function toggleChat() {
+            const chatWindow = document.getElementById('aiChatWindow');
+            isChatOpen = !isChatOpen;
+            chatWindow.style.display = isChatOpen ? 'flex' : 'none';
+            if(isChatOpen) document.getElementById('aiChatInput').focus();
+        }
+
+        function appendMessage(role, text) {
+            const container = document.getElementById('aiChatMessages');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `ai-message ${role}`;
+            msgDiv.innerHTML = text.replace(/\n/g, '<br>');
+            const id = 'msg-' + Math.random().toString(36).substr(2, 9);
+            msgDiv.id = id;
+            container.appendChild(msgDiv);
+            container.scrollTop = container.scrollHeight;
+            return id;
+        }
+
+        async function fetchWithRetry(url, options, maxRetries = 3) {
+            let retries = 0;
+            while (retries < maxRetries) {
+                try {
+                    const res = await fetch(url, options);
+                    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+                    return res;
+                } catch (err) {
+                    if (retries === maxRetries - 1) throw err;
+                    retries++;
+                    await new Promise(r => setTimeout(r, 1000));
+                }
+            }
+        }
+
+        async function sendChatMessage() {
+            const input = document.getElementById('aiChatInput');
+            const msg = input.value.trim();
+            if (!msg) return;
+            
+            appendMessage('user', msg);
+            input.value = '';
+            const loadingId = appendMessage('bot', '<i class="fa-solid fa-spinner fa-spin text-gray-400"></i> Đang tra cứu...');
+            
+            chatHistory.push({ role: "user", parts: [{ text: msg }] });
+            const payload = { systemInstruction: { parts: [{ text: systemPrompt }] }, contents: chatHistory };
+            
+            try {
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+                const res = await fetchWithRetry(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                const data = await res.json();
+                const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (reply) {
+                    chatHistory.push({ role: "model", parts: [{ text: reply }] });
+                    document.getElementById(loadingId).innerHTML = reply.replace(/\n/g, '<br>');
+                    document.getElementById('aiChatMessages').scrollTop = document.getElementById('aiChatMessages').scrollHeight;
+                }
+            } catch(e) {
+                document.getElementById(loadingId).innerHTML = "Cáo lỗi, tôi đang bận, xin hỏi lại sau.";
+                chatHistory.pop();
+            }
+        }
+
+        // AI TTS Đọc Văn Bản
+        let isPlayingAudio = false;
+        let currentAudio = null;
+        
+        function base64ToArrayBuffer(base64) {
+            const binary_string = window.atob(base64);
+            const len = binary_string.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) bytes[i] = binary_string.charCodeAt(i);
+            return bytes.buffer;
+        }
+
+        function pcmToWav(pcmData, sampleRate) {
+            const numChannels = 1, bitsPerSample = 16;
+            const byteRate = sampleRate * numChannels * (bitsPerSample / 8);
+            const blockAlign = numChannels * (bitsPerSample / 8);
+            const dataSize = pcmData.length * 2;
+            const buffer = new ArrayBuffer(44 + dataSize);
+            const view = new DataView(buffer);
+            const writeString = (view, offset, string) => { for (let i = 0; i < string.length; i++) view.setUint8(offset + i, string.charCodeAt(i)); };
+
+            writeString(view, 0, 'RIFF'); view.setUint32(4, 36 + dataSize, true);
+            writeString(view, 8, 'WAVE'); writeString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true); view.setUint16(20, 1, true);
+            view.setUint16(22, numChannels, true); view.setUint32(24, sampleRate, true);
+            view.setUint32(28, byteRate, true); view.setUint16(32, blockAlign, true);
+            view.setUint16(34, bitsPerSample, true); writeString(view, 36, 'data');
+            view.setUint32(40, dataSize, true);
+
+            let offset = 44;
+            for (let i = 0; i < pcmData.length; i++, offset += 2) view.setInt16(offset, pcmData[i], true);
+            return new Blob([view], { type: 'audio/wav' });
+        }
+
+        const tabTexts = {
+            'trang-chu': "Đình Niệm Nghĩa ngày nay vốn là đình cũ của làng Vĩnh Niệm xưa, nằm bên sông Lạch Tray (còn gọi là sông Niệm), gần khu vực cầu Niệm hiện nay. Đây là một công trình kiến trúc nghệ thuật còn lưu giữ được nhiều nét cổ truyền ở vùng ven đô Hải Phòng, đồng thời là nơi thờ phụng, tưởng niệm danh tướng Phạm Tử Nghi, dân gian thường gọi là Đức Thánh Niệm, trên chính quê hương ông. Đức Thánh Niệm Phạm Tử Nghi- Ông sinh thời Hồng Thuận triều Lê. Giữa thời loạn lạc, ông kiên quyết phò tá Mạc Chính Trung lập triều đình riêng. Chiến công lẫy lừng của ông là tiến đánh vùng Lưỡng Quảng.Nhớ ơn đức độ và sự hy sinh cao cả của ông, nhân dân suy tôn ông là Thành hoàng và lập đình thờ phụng hương khói muôn đời. Kiến Trúc Đình Cổ Kính được làm chủ yếu bằng gỗ lim, bố cục hình chữ Công (工), gồm 5 gian tiền đường,2 gian nhà cầu (ống muống) và tòa hậu cung. Mái đao cong vút trang trí rồng chầu nguyệt, phượng múa, nghê chầu, thủy quái Makara.Hệ thống kết cấu gỗ bên trong chạm trổ tinh xảo, là một kiệt tác hiếm có còn sót lại, được công nhận Di tích cấp Quốc gia năm 1996. Phần tài liệu chi tiết đang được đính kèm ở phía dưới.",
+            'video-anh': "Các bạn đang xem phần tư liệu video thực tế về di tích Đình Niệm Nghĩa và Lễ hội truyền thống."
+        };
+
+        async function playAudioStory() {
+            const btn = document.getElementById('btnAudioStory');
+            const iconElement = btn.querySelector('i');
+            
+            if (isPlayingAudio && currentAudio) {
+                currentAudio.pause(); currentAudio.currentTime = 0; isPlayingAudio = false; iconElement.className = "fa-solid fa-headphones"; return;
+            }
+
+            iconElement.className = "fa-solid fa-spinner fa-spin";
+            const payload = { contents: [{ parts: [{ text: tabTexts[currentTabId] }] }], generationConfig: { responseModalities: ["AUDIO"], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Charon" } } } }, model: "gemini-2.5-flash-preview-tts" };
+
+            try {
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
+                const res = await fetchWithRetry(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                const data = await res.json();
+                const part = data?.candidates?.[0]?.content?.parts?.[0];
+                if (part?.inlineData?.data) {
+                    const wavBlob = pcmToWav(new Int16Array(base64ToArrayBuffer(part.inlineData.data)), 24000);
+                    currentAudio = new Audio(URL.createObjectURL(wavBlob));
+                    currentAudio.onended = () => { isPlayingAudio = false; iconElement.className = "fa-solid fa-headphones"; };
+                    currentAudio.play(); isPlayingAudio = true; iconElement.className = "fa-solid fa-stop";
+                }
+            } catch (e) {
+                iconElement.className = "fa-solid fa-headphones"; btn.style.borderColor = "red"; setTimeout(() => btn.style.borderColor = "#900000", 2000);
+            }
+        }
+    </script>
+</body>
+</html>
